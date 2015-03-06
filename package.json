@@ -1,0 +1,16 @@
+{
+  "name": "wx-scene",
+  "version": "0.1.0",
+  "description": "single page slider show.",
+  "main": "wx-scene.js",
+  "author": "zhangyang",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.2.1",
+    "gulp": "^3.8.11",
+    "gulp-less": "^3.0.1"
+  },
+  "dependencies": {
+    "zepto": "0.0.4"
+  }
+}

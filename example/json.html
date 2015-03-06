@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>手机场景</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <link rel="stylesheet" href="../src/styles/style.css"/>
+
+</head>
+<body>
+
+
+    <script src="../src/scripts/app.js"></script>
+    <script>
+        new WxScene({
+            music: 'http://pan.xici.com/group4/M01/0D/0E/rBABplTa77iESZ3zAAAAAHgQVyQ216.mp3',
+            pages: [
+                {
+                    bg: '/src/images/spring/p01_bg.jpg',
+                    items: [
+                        {
+                            bg: '/src/images/spring/p01_cloud.png',
+                            animate: 'animate_fade',
+                            delay: 0.5
+                        },
+                        {
+                            bg: '/src/images/spring/p01_s01.png',
+                            animate: 'animate_fade_from_bottom'
+                        },
+                        {
+                            bg: '/src/images/spring/p01_s02.png',
+                            animate: 'animate_fade_from_right'
+                        },
+                        {
+                            bg: '/src/images/spring/p01_z01.png',
+                            animate: 'animate_fade_from_left'
+                        },
+                        {
+                            bg: '/src/images/spring/p01_z02.png',
+                            animate: 'animate_peng'
+                        }
+                    ]
+                },
+                {
+                    bg: '/src/images/spring/p02_bg.jpg',
+                    items: [
+                        {
+                            bg: '/src/images/spring/p02_s01.png',
+                            animate: 'animate_fade_from_bottom'
+                        },
+                        {
+                            bg: '/src/images/spring/p02_s02.png',
+                            animate: 'animate_fade_from_bottom'
+                        },
+                        {
+                            bg: '/src/images/spring/p02_z01.png',
+                            animate: 'animate_fade_from_bottom'
+                        },
+                        {
+                            bg: '/src/images/spring/p02_z02.png',
+                            animate: 'animate_fade_from_bottom'
+                        }
+                    ]
+                }
+            ],
+            loading: ''
+        });
+    </script>
+
+</body>
+</html>
