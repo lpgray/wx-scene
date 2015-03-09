@@ -5,76 +5,68 @@
     <title>手机场景</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <link rel="stylesheet" href="../src/styles/style.css"/>
+    <link rel="stylesheet" href="../src/styles/wx-scene.css"/>
 
 </head>
 <body>
 
-    <div id="J_loadingPage" class="loading_page">
-        <p>新春报喜，即将点燃...</p>
-        <div class="progress">
-            <div id="J_progress" class="inner"></div>
-        </div>
-    </div>
 
-    <div id="J_player" class="player">
-        <div class="play">播放</div>
-        <div class="pause">暂停</div>
-    </div>
-
-    <div id="page1" class="page">
-        <div id="p1-1"></div>
-        <div id="p1-2"></div>
-        <div id="p1-3"></div>
-        <div id="p1-4"></div>
-        <div id="p1-5"></div>
-        <div id="p1-6"></div>
-        <div class="icon icon_arrow"><i class="arrow"></i></div></div>
-    </div>
-    <div id="page2" class="page">
-        <div id="p2-1"></div>
-        <div id="p2-2"></div>
-        <div id="p2-3"></div>
-        <div id="p2-4"></div>
-        <div id="p2-5"></div>
-        <div class="icon icon_arrow"><i class="arrow"></i></div></div>
-    </div>
-    <div id="page3" class="page">
-        <div class="match-frame">
-            <div id="J_BaoZhuFrame" class="baozhu-frame">
-                <div class="pole"></div>
-                <div id="J_BaoZhu" class="baozhu">
-                    <div class="fu"></div>
-                    <div class="line"></div>
-                </div>
-            </div>
-
-            <div id="J_ChunLian" class="chunlian">
-                <div class="chunlian-words chunlian-words-1"></div>
-                <div class="chunlian-words chunlian-words-2"></div>
-                <div class="chunlian-words chunlian-words-3"></div>
-                <div class="chunlian-words chunlian-words-4"></div>
-            </div>
-
-            <div id="J_BtnWrap" class="button-wrap">
-                <div data-toggle="sharewx" class="button">炫耀一下</div>
-                <div id="J_BtnAgain" class="button button-orange">再爆一次</div>
-            </div>
-
-            <div id="J_BaoZhaWrap" class="baozha-wrap">
-
-            </div>
-
-            <div id="J_Match" class="match"></div>
-
-            <div id="J_BaoZhuLabel" class="label-fire">
-                当前已有 <span id="J_TotalCount">5847</span> 人爆出精彩
-            </div>
-        </div>
-    </div>
-
-    <script src="../node_modules/zepto.min.js"></script>
     <script src="../src/scripts/wx-scene.js"></script>
+    <script>
+        new WxScene({
+            music: 'http://pan.xici.com/group4/M01/0D/0E/rBABplTa77iESZ3zAAAAAHgQVyQ216.mp3',
+            pages: [
+                {
+                    bg: 'spring/p01_bg.jpg',
+                    items: [
+                        {
+                            bg: 'spring/p01_cloud.png',
+                            animate: 'animate_fade',
+                            delay: 0.5
+                        },
+                        {
+                            bg: 'spring/p01_s01.png',
+                            animate: 'animate_fade_from_bottom'
+                        },
+                        {
+                            bg: 'spring/p01_s02.png',
+                            animate: 'animate_fade_from_right'
+                        },
+                        {
+                            bg: 'spring/p01_z01.png',
+                            animate: 'animate_fade_from_left'
+                        },
+                        {
+                            bg: 'spring/p01_z02.png',
+                            animate: 'animate_peng'
+                        }
+                    ]
+                },
+                {
+                    bg: 'spring/p02_bg.jpg',
+                    items: [
+                        {
+                            bg: 'spring/p02_s01.png',
+                            animate: 'animate_fade_from_bottom'
+                        },
+                        {
+                            bg: 'spring/p02_s02.png',
+                            animate: 'animate_fade_from_bottom'
+                        },
+                        {
+                            bg: 'spring/p02_z01.png',
+                            animate: 'animate_fade_from_bottom'
+                        },
+                        {
+                            bg: 'spring/p02_z02.png',
+                            animate: 'animate_fade_from_bottom'
+                        }
+                    ]
+                }
+            ],
+            loading: '新春报喜，即将点燃！'
+        });
+    </script>
 
 </body>
 </html>

@@ -14,7 +14,7 @@ wx-scene
 - iOS 6.0
 
 ## How to use
-可以参考 `example/json.html` 使用。
+可以参考 `example/index.html` 使用。
 
 ## API
 ```javascript
@@ -58,6 +58,9 @@ new WxScene({
 - `animate_fade_from_right`
 - `animate_fade_from_left`
 - `animate_peng`
+
+###### delay
+当前元素延迟显示的秒数，默认 `0.2` 。
 
 #### music
 默认是 `null`, 需要播放的背景音乐url地址，如果不提供，音乐播放功能将不会被启用。

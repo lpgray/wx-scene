@@ -393,7 +393,7 @@ body img {
   width: 16px;
   height: 20px;
   display: inline-block;
-  background: url(../images/xici-xw-icon_06.png) 0 0 no-repeat;
+  background: url('../images/arrow.png') 0 0 no-repeat;
   background-size: 16px;
   -webkit-animation: motion 2s infinite;
   animation: motion 2s infinite;
