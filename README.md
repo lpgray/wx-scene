@@ -24,6 +24,7 @@ new WxScene(options);
 ### options
 - `pages : [Array]`
 - `music : [String]`
+- `loading : [String]`
 
 #### pages
 每一页的元素声明，包括背景及子元素。例如：
@@ -61,7 +62,8 @@ new WxScene({
 #### music
 默认是 `null`, 需要播放的背景音乐url地址，如果不提供，音乐播放功能将不会被启用。
 
+#### loading
+默认是 `null`, 这个参数是指定loading页面的标题，loading设定后，会加载所有 `pages` 需要用的图片资源，加载完毕后显示第一页。
+
 ## TODO
-- loading页面
-- 图片预加载
 - 微信分享
