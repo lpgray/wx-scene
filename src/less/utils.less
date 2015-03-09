@@ -252,3 +252,34 @@
     -ms-user-select: @select; // IE10+
     user-select: @select;
 }
+
+
+// Functions
+.box-shadow(){
+    box-shadow: 0 1px 1px rgba(0,0,0,.2);
+}
+.clearfix(){
+    &:before,
+    &:after {
+        content: " "; // 1
+        display: table; // 2
+    }
+    &:after {
+        clear: both;
+    }
+}
+.clearfix{
+    .clearfix();
+}
+.tc{
+    text-align: center;
+}
+.tr{
+    text-align: right;
+}
+.pull-left{
+    float: left;
+}
+.pull-right{
+    float: right;
+}

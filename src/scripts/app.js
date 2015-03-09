@@ -18,13 +18,28 @@
     // Page Events
     var AFTER_ENTER = 'pages.afterEnter';
     var musicPlayer;
+    var loadingPage;
 
     // Main
     var WxScene = function (options) {
+        var self = this;
+
         this.options = options;
 
         if (options.music) {
             musicPlayer = musicPlayerFactory(options.music);
+        }
+
+        if (options.loading) {
+            loadingPage = loadingPageFactory(options);
+            loadingPage.onLoad(function() {
+                // 加载 json 并 render html
+                self.renderPages(options.pages);
+
+                // 绑定滑动事件
+                self.bindEvent();
+            });
+            return;
         }
 
         // 加载 json 并 render html
@@ -265,6 +280,93 @@
             }
         };
     };
+
+    // loading页面
+    function loadingPageFactory(options) {
+        var tmpl = '';
+        tmpl += '   <p>'+ options.loading +'</p>';
+        tmpl += '   <div class="progress">';
+        tmpl += '       <div id="J_progress" class="inner"></div>';
+        tmpl += '   </div>';
+
+        var div = document.createElement('div');
+        div.className = 'loading_page';
+        div.innerHTML = tmpl;
+
+        document.body.appendChild(div);
+
+        var progressBar = document.getElementById('J_progress');
+
+        // 资源加载
+        var LoadingRecource = (function() {
+            var eventCenter = {};
+
+            return {
+                // 加载图片资源，资源加载完毕后会触发 imageLoaded 事件
+                // 参数：array类型，表示要加载资源的 url
+                loadImages: function(resArr) {
+                    var loaded = 0;
+                    for (var index = 0, l = resArr.length; index < l; index++) {
+                        var image = new Image();
+                        image.onload = function() {
+                            if ('naturalHeight' in this) {
+                                if (this.naturalHeight + this.naturalWidth === 0) {
+                                    this.onerror();
+                                    return;
+                                }
+                            } else if (this.width + this.height === 0) {
+                                this.onerror();
+                                return;
+                            }
+                            loaded++;
+                            eventCenter.progress && eventCenter.progress.call(LoadingRecource, (loaded / resArr.length).toFixed(2));
+                            if (loaded >= resArr.length) {
+                                eventCenter.imageLoaded && eventCenter.imageLoaded.call(LoadingRecource);
+                            }
+                        };
+                        image.onerror = function() {
+                            loaded++;
+                            if (loaded >= resArr.length) {
+                                eventCenter.imageLoaded && eventCenter.imageLoaded.call(LoadingRecource);
+                            }
+                        };
+                        image.src = resArr[index];
+                    }
+                },
+                // 事件绑定，绑定特定事件
+                on: function(eventName, handler) {
+                    eventCenter[eventName] = handler;
+                }
+            };
+        }());
+
+        var onLoad;
+
+        LoadingRecource.on('imageLoaded', function() {
+            div.style.display = 'none';
+            onLoad && onLoad.call();
+        });
+
+        LoadingRecource.on('progress', function(progress) {
+            progressBar.style.maxWidth = progress * 100 + '%';
+        });
+
+        var imgResArr = [];
+        for (var i = 0, l = options.pages.length; i < l; i++) {
+            imgResArr.push(options.pages[i].bg);
+            for (var j = 0, l2 = options.pages[i].items.length; j<l2 ; j++) {
+                imgResArr.push(options.pages[i].items[j].bg);
+            }
+        }
+
+        LoadingRecource.loadImages(imgResArr);
+
+        return {
+            onLoad : function(cb) {
+                onLoad = cb;
+            }
+        }
+    }
 
     root.WxScene = WxScene;
 
