@@ -81,6 +81,7 @@
             var pages = document.querySelectorAll('.page');
             var pages_size = pages.length;
             var current_page = -1;
+            var _this = this;
 
             // 定义两个事件，上滑动和下滑动
             var evtSwipeTop = document.createEvent('HTMLEvents');
@@ -103,6 +104,7 @@
                     pages.item(pageNbr).dispatchEvent(evtAfterEnter);
                     removeEvent(pages.item(pageNbr), 'webkitAnimationEnd animationend', afterEnter);
                     pages.item(pageNbr).style.zIndex = 100;
+                    _this.options.onPageLoad && _this.options.onPageLoad(pageNbr);
                 };
 
                 addEvent(pages.item(pageNbr), 'webkitAnimationEnd animationend', afterEnter);
@@ -136,6 +138,7 @@
                         _.style.zIndex = 100;
                         _.className = 'page animate_swipe_top';
                         addEvent(_, 'webkitTransitionEnd msTransitionEnd', pageHideFunc);
+                        _this.options.onPageScroll && _this.options.onPageScroll(index);
                         showPage(index + 1);
                     }
                 }, false);
@@ -146,6 +149,7 @@
                         _.style.zIndex = 100;
                         _.className = 'page animate_swipe_bottom';
                         addEvent(_, 'webkitTransitionEnd msTransitionEnd', pageHideFunc);
+                        _this.options.onPageScroll && _this.options.onPageScroll(index);
                         showPage(index - 1);
                     }
                 }, false);
@@ -167,18 +171,18 @@
             var startPoint = {};
             var endPoint;
             document.body.addEventListener('touchstart', function (e) {
-                if (e.target.nodeName === 'A') {
-                    return;
-                }
+                // if (e.target.nodeName === 'A') {
+                //     return;
+                // }
                 startPoint.pageX = e.changedTouches[0].pageX;
                 startPoint.pageY = e.changedTouches[0].pageY;
-                e.preventDefault();
-                e.stopPropagation();
+                // e.preventDefault();
+                // e.stopPropagation();
             }, false);
             document.body.addEventListener('touchend', function (e) {
-                if (e.target.nodeName === 'A') {
-                    return;
-                }
+                // if (e.target.nodeName === 'A') {
+                //     return;
+                // }
                 endPoint = e.changedTouches[0];
                 if (startPoint.pageY - endPoint.pageY > 60) {
                     // 发布事件
@@ -187,8 +191,8 @@
                     // 发布事件
                     pages.item(current_page).dispatchEvent(evtSwipeBottom);
                 }
-                e.preventDefault();
-                e.stopPropagation();
+                // e.preventDefault();
+                // e.stopPropagation();
             }, false);
 
             this.pages = pages;
