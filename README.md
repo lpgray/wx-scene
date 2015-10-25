@@ -1,19 +1,19 @@
 wx-scene
 ======
-手机单页滑屏组件，常用于微信营销业务方面，只适用于移动端，不依赖任何类库。本代码现在还是比较乱的，没重构，不过已经经过了几十万PV的考验。
+手机单页滑屏组件，常用于微信营销业务方面，只适用于移动端，不依赖任何类库。
 
-## Demos
+## 一些案例
 以下东西都请用手机或者PC的手机模拟器打开，部分必须在微信内置浏览器打开，当然你也可以自己改UA头，加上 `MicroMessenger` 即可。
 
 - [http://weixin.xici.net/html/cracker/](http://weixin.xici.net/html/cracker/)
 - [http://weixin.xici.net/html/gongji/](http://weixin.xici.net/html/gongji/)
 - [http://weixin.xici.net/html/xuwei/](http://weixin.xici.net/html/xuwei/)
 
-## Browser Support
+## 浏览器支持
 - Android 4.0
 - iOS 6.0
 
-## How to use
+## 使用方法
 可以参考 `example/index.html` 使用。
 
 ## API
@@ -25,6 +25,8 @@ new WxScene(options);
 - `pages : [Array]`
 - `music : [String]`
 - `loading : [String]`
+- `onPageLoad` : `[Function]`
+- `onPageScroll` : `[Function]`
 
 #### pages
 每一页的元素声明，包括背景及子元素。例如：
@@ -67,6 +69,12 @@ new WxScene({
 
 #### loading
 默认是 `null`, 这个参数是指定loading页面的标题，loading设定后，会加载所有 `pages` 需要用的图片资源，加载完毕后显示第一页。
+
+#### onPageLoad
+每一页加载之后的回调函数，接受一个参数，代表页码
+
+#### onPageScroll
+每一页滚走之前的回调函数，接受一个参数，代表滚走的页码
 
 ## TODO
 - 微信分享
